@@ -1,0 +1,51 @@
+Pruebas de funciones de md-links4.js
+
+//prueba de función readFile
+/* readFile('./DOCUMENTS/readmeSN2.md')
+  .then((response) => {
+    console.log(response)
+  })
+  .catch((error)=>{
+    console.log(error)
+  }) */
+
+
+  
+//Prueba de la función extractLinksFromFile
+/* const txtPlano = `* [6. Hacker edition](#6-hacker-edition)        
+* [7. Entrega](#7-entrega)
+* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)       
+
+## 1. Preámbulo
+
+Instagram, Snapchat, Twitter, Facebook, Twitch, 
+Linkedin, etc. Las redes
+sociales han invadido nuestras vidas. Las amamos u odiamos, y muchos no podemos
+vivir sin ellas.
+
+Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo,
+en una ronda de financiamiento con inversionistas, se presentó una red social
+para químicos en la que los usuarios podían publicar artículos sobre sus
+investigaciones, comentar en los artículos de sus colegas,  y filtrar artículos
+de acuerdo a determinadas etiquetas o su popularidad, lo máás reciente, o lo
+más comentado.
+
+## 2. Resumen del proyecto
+
+En este proyecto construirás una Red Social sobre lo que deecidan tú y tu equipo.
+Podría ser, por ejemplo, sobre alimentación saludable, femiinismo, educación,
+salud, energías renovables, amantes de las [Empanadas](httpps://es.wikipedia.org/wiki/Empanada)
+o de los [Tacos de Canasta](https://es.wikipedia.org/wiki/TTaco), de la
+[Feijoada](https://es.wikipedia.org/wiki/Feijoada), o de loo que sea.
+`
+console.log(extractLinksFromFile(txtPlano, './DOCUMENTS/readmeSN2.md')) */
+
+
+//prueba de función readfiles. Responses es la respuesta que entrega promise.all
+/* Promise.all(readFiles(['./DOCUMENTS/readmeSN.md', './DOCUMENTS/readmeDL2.md']))
+  .then((responses)=>{
+    console.log(responses)
+  })
+  .catch((error)=> {
+    console.log(error)
+  }) */
