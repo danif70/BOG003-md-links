@@ -3,7 +3,7 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
 const markdownLinkExtractor = require('markdown-link-extractor');
-//const axios = require('axios');
+const axios = require('axios').default;
 const { argv } = require('process');
 const FileHound = require('filehound');
 
@@ -27,13 +27,14 @@ const mdLinks = (userPath, userValidate) => {
     .then((allMdFiles) => {
       return Promise.all(readFiles(allMdFiles))
     })
-     /* .then((linksObjects) => {
-     //console.log('linea 34 ', linksObjects);
-     if(userValidate){
-     //return Validate(linksObjects)
-     console.log('se valida')
-    }
-   })   */
+    .then((nestedObjects)=> {
+      return nestedObjects.flatMap((arrayObjects)=> arrayObjects)
+    })
+    .then((linkObjects) => {
+      if(userValidate){
+        return linkValidate(linkObjects)
+      }
+    })
     .then((response) => {
       console.log('último consolelog ', response)
     })
@@ -93,6 +94,38 @@ const extractLinksFromFile = (dataFile, filePath) => markdownLinkExtractor(dataF
     file: filePath,
   })) 
 
+
+//Función para validar si los links de los objetos funcionan, usando la librería Axios.
+const linkValidate = (linkObjects) => {
+  return Promise.all(linkObjects.map(linkObject => {
+    return axios.get(linkObject.href)}))
+    .then((responses)=>{
+      return responses.map((response)=>{
+          return {href:response.responseUrl, text: response.text, file: response.file, status: response.status, statusText: response.statusText}
+      })
+    })
+  
+}
+
+
+
 module.exports = mdLinks
-
-
+/*  console.log(response)
+     newObject=
+    {
+      href: href,
+      text: text,
+      file: filePath,
+      status: response.status,
+      statusText: response.statusText,
+    }
+    })
+    .catch(() =>{
+    newObject =
+    {
+      href: href,
+      text: text,
+      file: filePath,
+      status: '404',
+      statusText: 'NotOK',
+    }  */

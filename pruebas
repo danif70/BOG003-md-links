@@ -49,3 +49,34 @@ console.log(extractLinksFromFile(txtPlano, './DOCUMENTS/readmeSN2.md')) */
   .catch((error)=> {
     console.log(error)
   }) */
+
+//prueba para axios
+  const axiosPrueba = (linkObjects) => {
+  return Promise.all(linkObjects.map((linkObject)=>{
+    return axios.get(linkObject.href)
+  }))
+  
+ /*  .then((response)=> {
+    console.log(response.status, response.statusText)
+  })
+  .catch((error)=>{
+    console.log(error.isAxiosError)
+  }) */
+}
+
+axiosPrueba( [{
+  href: 'https://es.wikipedia.org/wiki/Feijoada',
+  text: 'Feijoada',
+  file: 'C:\\DocumentsC\\Laboratoria\\BOG003-md-links\\DOCUMENTS\\readmeSN2.md'
+}, {
+  href: 'https://google.com',
+  text: 'Feijoada',
+  file: 'C:\\DocumentsC\\Laboratoria\\BOG003-md-links\\DOCUMENTS\\readmeSN2.md'
+}])
+.then((responses)=>{
+  return responses.map((response)=>{
+    return {status: response.status, statusText: response.statusText}
+  })
+
+})
+.then(console.log)
