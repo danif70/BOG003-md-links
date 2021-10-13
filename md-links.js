@@ -30,11 +30,14 @@ const mdLinks = (userPath, userValidate) => {
     .then((nestedObjects)=> {
       return nestedObjects.flatMap((arrayObjects)=> arrayObjects)
     })
-    .then((linkObjects) => {
+    .then((linkObjects)=>{
       if(userValidate){
         return linkValidate(linkObjects)
       }
-    })
+      else if(!userValidate){
+        return linkObjects
+      }
+    })  
     .then((response) => {
       console.log('último consolelog ', response)
     })
@@ -48,7 +51,6 @@ const aFile = (userPath) => new Promise((resolve, reject) => {
     if (error) {
       reject('Ruta inválida')
     } else {
-      //console.log('linea 39 ',stats.isFile())
       resolve(stats.isFile())
     }
   })
@@ -62,7 +64,7 @@ const mdFiles = (arrayFiles) => arrayFiles.filter(file => (path.extname(file) ==
 
 //Función para leer un archivo, entrega texto plano
 const readFile = (mdFile) => new Promise((resolve, reject) => {
-  readObject = {}
+  
   fs.readFile(mdFile, 'utf-8', (error, dataFile) => {
     if (error) {
       reject('Error inesperado al intentar leer el archivo ' + mdFile)
@@ -83,7 +85,7 @@ const readFiles = (mdFiles)  => {
 }
 
 
-//Función para extraer links de dataFile entrgado por readFile y además se filtran. Esta función es síncrona porque ya recibe el texto plano (no lo busca)
+//Función para extraer links de dataFile entregado por readFile y además se filtran. Esta función es síncrona porque ya recibe el texto plano (no lo busca)
 const extractLinksFromFile = (dataFile, filePath) => markdownLinkExtractor(dataFile, true)
   .filter(objectDetail => (((objectDetail.href).includes('#') == true) && ((objectDetail.href).includes('http' || 'https')) == true) ||
   ((objectDetail.href).includes('#') == false) && ((objectDetail.href)
@@ -97,35 +99,20 @@ const extractLinksFromFile = (dataFile, filePath) => markdownLinkExtractor(dataF
 
 //Función para validar si los links de los objetos funcionan, usando la librería Axios.
 const linkValidate = (linkObjects) => {
-  return Promise.all(linkObjects.map(linkObject => {
-    return axios.get(linkObject.href)}))
-    .then((responses)=>{
-      return responses.map((response)=>{
-          return {href:response.responseUrl, text: response.text, file: response.file, status: response.status, statusText: response.statusText}
+
+  const linkValidateAxios = linkObjects.map((linkObject => {
+    return axios.get(linkObject.href)
+    .then((response)=>{
+      //if(response.status >=200 && response.status <400)
+      return {href:linkObject.href, text: linkObject.text, file: linkObject.file, status: response.status, statusText: response.statusText}
+        
       })
-    })
-  
+    .catch((error) => {
+      const failMessage = 'FAIL'
+      return {href:linkObject.href, text: linkObject.text, file: linkObject.file, status: error.errno, statusText: failMessage}
+    }) 
+    }))
+    return Promise.all(linkValidateAxios)
 }
 
-
-
 module.exports = mdLinks
-/*  console.log(response)
-     newObject=
-    {
-      href: href,
-      text: text,
-      file: filePath,
-      status: response.status,
-      statusText: response.statusText,
-    }
-    })
-    .catch(() =>{
-    newObject =
-    {
-      href: href,
-      text: text,
-      file: filePath,
-      status: '404',
-      statusText: 'NotOK',
-    }  */

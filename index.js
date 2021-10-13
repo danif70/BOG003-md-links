@@ -5,5 +5,6 @@ let userPath = process.argv[2];
 let userValidate = process.argv[3];
 let userStats = process.argv[4];
 userPath = path.resolve(userPath); 
-
+//let options = {userValidate:false, userStats : false}
 mdLinks(userPath, userValidate === '--validate', userStats === '--stats')
+mdLinks(userPath, userValidate)

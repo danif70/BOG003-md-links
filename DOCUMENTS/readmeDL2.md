@@ -58,7 +58,7 @@ Estos son datos que te proponemos:
 * [Pokémon](src/data/pokemon/pokemon.json):
   En este set encontrarás una lista con los 251 Pokémon de la región de Kanto
   y Johto, junto con sus respectivas estadísticas usadas en el juego
-  [Pokémon GO](http://pokemongolive.com).
+  [Pokémon GO](http://pokemongolivaa.com).
    - [Investigación con jugadores de Pokémon Go](/src/data/pokemon/README.md)
 
 
