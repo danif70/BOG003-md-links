@@ -1,4 +1,4 @@
-Pruebas de funciones de md-links4.js
+//Pruebas de funciones de md-links.js
 
 //prueba de función readFile
 /* readFile('./DOCUMENTS/readmeSN2.md')
@@ -51,10 +51,10 @@ console.log(extractLinksFromFile(txtPlano, './DOCUMENTS/readmeSN2.md')) */
   }) */
 
 //prueba para axios
-  const axiosPrueba = (linkObjects) => {
+  /* const axiosPrueba = (linkObjects) => {
   return Promise.all(linkObjects.map((linkObject)=>{
     return axios.get(linkObject.href)
-  }))
+  })) */
   
  /*  .then((response)=> {
     console.log(response.status, response.statusText)
@@ -64,7 +64,7 @@ console.log(extractLinksFromFile(txtPlano, './DOCUMENTS/readmeSN2.md')) */
   }) */
 }
 
-axiosPrueba( [{
+/* axiosPrueba( [{
   href: 'https://es.wikipedia.org/wiki/Feijoada',
   text: 'Feijoada',
   file: 'C:\\DocumentsC\\Laboratoria\\BOG003-md-links\\DOCUMENTS\\readmeSN2.md'
@@ -79,4 +79,4 @@ axiosPrueba( [{
   })
 
 })
-.then(console.log)
+.then(console.log) */

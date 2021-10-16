@@ -4,11 +4,10 @@ const fsPromises = require('fs').promises;
 const path = require('path');
 const markdownLinkExtractor = require('markdown-link-extractor');
 const axios = require('axios').default;
-const { argv } = require('process');
 const FileHound = require('filehound');
 
 
-const mdLinks = (userPath, options) => {
+const mdLinks = (userPath, options) => new Promise ((resolve, reject) => {
   //console.log('linea 12', options)
   aFile(userPath)
     .then(response => {
@@ -31,14 +30,8 @@ const mdLinks = (userPath, options) => {
       return nestedObjects.flatMap((arrayObjects)=> arrayObjects)
     })
     .then((linkObjects)=>{
-      //console.log('linea 34 ',options)
-      if(options.includes('--validate') && options.includes('--stats')){
-        return validateLinkStat(linkObjects)
-      }
-      else if(options.includes('--stats')){
-        return linkStats(linkObjects)
-      }
-      else if(options.includes('--validate')){
+     
+      if(options.includes('--validate')){
         return linkValidate(linkObjects)
       }
       else{
@@ -46,11 +39,14 @@ const mdLinks = (userPath, options) => {
       }
     })  
     .then((response) => {
-      console.log('último console.log: ', response)
+      resolve(response)
+      //console.log(response)
     })
+    .catch((error) =>{
+      reject(error)
 
-    .catch(console.log)
-}
+    })
+})
 
 
 //Esta función es una promesa que valida la ruta y si es archivo
@@ -125,41 +121,7 @@ return Promise.all(linkValidateAxios)
 }
 
 
-//Función para calcular de estadísticas
-const linkStats = (linkObjects) => {
-  let totalLink = 0
-  let uniqueLinks = 0
-  let linkArray = []
 
-  linkObjects.forEach(linkObject => {
-    linkArray.push(linkObject.href)
-  })
-  const linkSet = new Set(linkArray)
-  totalLink = linkArray.length
-  uniqueLinks = linkSet.size
-    return `\nTotal: ${uniqueLinks}
-Unique: ${totalLink}`
-}
-
-
-//2da función de estadísticas
-const validateLinkStat = (linkObjects) => {
-  let failLinks = 0
-  let totalLinks = 0
-  let arrayLinks =[]
-  linkObjects.forEach(linkObject => {
-    arrayLinks.push(linkObject)
-    if(linkObject.status != 200){
-      failLinks =+ 1
-    }
-})
-const linkSet = new Set(arrayLinks)
-totalLinks = arrayLinks.length
-uniqueLinks = linkSet.size
-return`\nBroken: ${failLinks}
-Unique: ${uniqueLinks}
-Total: ${totalLinks}`
-}
 
 
 module.exports = mdLinks
