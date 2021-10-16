@@ -49,7 +49,7 @@ const validateLinkStat = () => {
   let totalLinks = 0
   let arrayLinks =[]
   linkObjects.forEach(linkObject => {
-    arrayLinks.push(linkObject)
+    arrayLinks.push(linkObject.href)
     if(linkObject.status != 200){
       failLinks =+ 1
     }
