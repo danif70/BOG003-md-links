@@ -6,10 +6,11 @@
   "author": "Daniela Funes (https://github.com/danif70/BOG003-md-links)",
   "license": "ISC",
   "bin": {
-    "md-links": "index.js"
+    "md-links": "cli.js"
   },
   "dependencies": {
     "axios": "^0.21.4",
+    "colors": "^1.4.0",
     "filehound": "^1.17.5",
     "fs-readdir-recursive": "^1.1.0",
     "markdown-it": "^12.2.0",

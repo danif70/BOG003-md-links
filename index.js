@@ -1,4 +1,3 @@
-//utilizando filehoun pata obtener archivos .md ¿cómo hacer promesa esa función?
 const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
@@ -6,17 +5,14 @@ const markdownLinkExtractor = require('markdown-link-extractor');
 const axios = require('axios').default;
 const FileHound = require('filehound');
 
-
 const mdLinks = (userPath, options) => new Promise ((resolve, reject) => {
   //console.log('linea 12', options)
   aFile(userPath)
     .then(response => {
       if (response) {
-        //console.log('linea 16 ', userPath)
         return [userPath]
       }
       else {
-        //console.log('linea 23 ', userPath)
         return allTheFiles(userPath)
       }
     })
@@ -30,7 +26,6 @@ const mdLinks = (userPath, options) => new Promise ((resolve, reject) => {
       return nestedObjects.flatMap((arrayObjects)=> arrayObjects)
     })
     .then((linkObjects)=>{
-     
       if(options.includes('--validate')){
         return linkValidate(linkObjects)
       }
@@ -114,14 +109,11 @@ const linkValidate = (linkObjects) => {
     })
     .catch((error) => {
       const failMessage = 'FAIL'
-      return {href:linkObject.href, text: linkObject.text, file: linkObject.file, status: error.errno, statusText: failMessage}
+      return {href:linkObject.href, text: linkObject.text, file: linkObject.file, status: error.response.status, statusText: failMessage}
     }) 
   }))
 return Promise.all(linkValidateAxios)
 }
-
-
-
 
 
 module.exports = mdLinks
