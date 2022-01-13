@@ -7,7 +7,7 @@ let userPath = process.argv[2];
 if(userPath===undefined){
   console.log(colors.bgMagenta.white('WELCOME TO MD-LINKS'),'\n',
   colors.bold('INSTRUCCIONS:'),'\n', 
-  '1-Escribe la ruta que quieres consultar','\n', 
+  '1-Escribe node cli.js + la ruta que quieres consultar','\n', 
   '2-Si además quieres saber si los enlaces web funcionan escribe ', colors.yellow('--validate'), ' después de la ruta','\n',
   '3- Si quieres estadísticas escribe ', colors.yellow('--stats'), ' después de la ruta','\n',
   '4-Si quieres estadísticas con enlaces rotos escribe ', colors.yellow ('--validate --stats'), ' después de la ruta','\n', '---------------------------------------------------------------','\n',
