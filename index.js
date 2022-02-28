@@ -48,7 +48,7 @@ const mdLinks = (userPath, options) => new Promise ((resolve, reject) => {
 const aFile = (userPath) => new Promise((resolve, reject) => {
   fs.stat(userPath, (error, stats) => {
     if (error) {
-      reject('Ruta inválida')
+      reject('Invalid path')
     } else {
       resolve(stats.isFile())
     }
@@ -68,7 +68,7 @@ const mdFiles = (arrayFiles) => arrayFiles.filter(file => (path.extname(file) ==
 const readFile = (mdFile) => new Promise((resolve, reject) => {
   fs.readFile(mdFile, 'utf-8', (error, dataFile) => {
     if (error) {
-      reject('Error inesperado al intentar leer el archivo ' + mdFile)
+      reject('Unexpected error trying to read the file ' + mdFile)
     }
     else {
       resolve(extractLinksFromFile(dataFile, mdFile))

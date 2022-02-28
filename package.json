@@ -1,6 +1,6 @@
 {
-  "name": "md-links",
-  "version": "0.1.0",
+  "name": "danielafunes_mdlinks",
+  "version": "1.0.0",
   "description": "Package to validate links in .md files.",
   "main": "index.js",
   "author": "Daniela Funes (https://github.com/danif70/BOG003-md-links)",
