@@ -6,7 +6,6 @@ const axios = require('axios').default;
 const FileHound = require('filehound');
 
 const mdLinks = (userPath, options) => new Promise ((resolve, reject) => {
-  //console.log('linea 12', options)
   aFile(userPath)
     .then(response => {
       if (response) {
