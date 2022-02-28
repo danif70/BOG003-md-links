@@ -10,12 +10,12 @@ To make use of the library you must install it from [NPM](https://www.npmjs.com/
 
 To install: 
 
-npm i danielafunes_mdlinks
+*npm i danielafunes_mdlinks*
 
 How to use:
-1- Type danielafunes_mdlinks + the path you want to query (it could be relative or absolute)
-2- If you also want to know if the web links work type ' --validate ' after the path
-3- For stats, type ' --stats ' after the path
-4- If you want stats of broken links type ' --validate --stats ' after de path
+  1. Type danielafunes_mdlinks + the path you want to query (it could be relative or absolute)
+  2. If you also want to know if the web links work type *--validate* after the path
+  3. For stats, type *--stats* after the path
+  4. If you want stats of broken links type *--validate --stats* after de path
 
-Author: Daniela Funes (https://github.com/Danif70)
+Author: [Daniela Funes] (https://github.com/Danif70)
