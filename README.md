@@ -18,4 +18,4 @@ How to use:
   3. For stats, type *--stats* after the path
   4. If you want stats of broken links type *--validate --stats* after de path
 
-Author: [Daniela Funes] (https://github.com/Danif70)
+Author: [Daniela Funes](https://github.com/Danif70)
