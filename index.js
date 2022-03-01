@@ -1,5 +1,5 @@
 const fs = require('fs');
-const fsPromises = require('fs').promises;
+//const fsPromises = require('fs').promises;
 const path = require('path');
 const markdownLinkExtractor = require('markdown-link-extractor');
 const axios = require('axios').default;

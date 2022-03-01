@@ -2,11 +2,11 @@
   "name": "danielafunes_mdlinks",
   "version": "1.0.0",
   "description": "Package to validate links in .md files.",
-  "main": "index.js",
+  "main": "cli.js",
   "author": "Daniela Funes (https://github.com/danif70/BOG003-md-links)",
   "license": "ISC",
   "bin": {
-    "md-links": "cli.js"
+    "danielafunes_mdlinks": "cli.js"
   },
   "dependencies": {
     "axios": "^0.21.4",
@@ -19,7 +19,7 @@
     "node-fetch": "^3.0.0",
     "recursive-readdir": "^2.2.2"
   },
-  "directories": {
+  "directories": { 
     "test": "test"
   },
   "devDependencies": {},
