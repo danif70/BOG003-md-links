@@ -13,7 +13,7 @@ To install:
 *npm i danielafunes_mdlinks*
 
 How to use:
-  1. Type danielafunes_mdlinks + the path you want to query (it could be relative or absolute)
+  1. Type danielafunes_mdlinks + the path you want to query (it could be relative or absolute and please, substitute all "\" for "/")
   2. If you also want to know if the web links work type *--validate* after the path
   3. For stats, type *--stats* after the path
   4. If you want stats of broken links type *--validate --stats* after de path
